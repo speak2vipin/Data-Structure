@@ -1,5 +1,7 @@
 package com.vipin.algorithms.array;
-
+/**
+*@Author vipingupta
+*/
 public class LittleBuyMaximimPhones {
 
 	public static void main(String[] args) {
