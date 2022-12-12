@@ -1,6 +1,6 @@
 package com.vipin.algorithm.matrixOr2DArray;
 
-import com.vipin.algorithms.array.MinNoOfSwapRequiredToMakeAllNumberTogetherLesserThanB.Solution;
+import com.vipin.algorithm.array.MinNoOfSwapRequiredToMakeAllNumberTogetherLesserThanB.Solution;
 
 public class MaximumTiles {
 
