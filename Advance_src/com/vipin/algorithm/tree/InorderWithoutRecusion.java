@@ -40,5 +40,13 @@ class TreeNode {
 	TreeNode left;
 	TreeNode right;
 	int val;
+	public TreeNode(int val) {
+		super(); 
+		this.val = val;
+		this.left = null;
+		this.right = null;
+	}
+	
+	
 
 }

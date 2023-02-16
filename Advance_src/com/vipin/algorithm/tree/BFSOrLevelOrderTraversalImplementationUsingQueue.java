@@ -7,7 +7,7 @@ import java.util.Queue;
 
 import javax.xml.transform.Templates;
 
-public class BFSImplementationUsingQueue {
+public class BFSOrLevelOrderTraversalImplementationUsingQueue {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
