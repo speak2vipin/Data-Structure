@@ -10,69 +10,41 @@ import java.util.Map;
  */
 public class MinePostorderAndInorderFormTree {
 
-	static int postorderIndex;
-	static Map<Integer, Integer> inorderIndexMap;
-
 	public static void main(String[] args) {
 
 		int[] inorder = { 9, 3, 15, 20, 7 };
 		int[] postorder = { 9, 15, 7, 20, 3 };
-		buildTree(postorder, inorder);
+		MinePostorderAndInorderFormTree m = new MinePostorderAndInorderFormTree();
+		m.buildTree(postorder, inorder);
 	}
 
-	public static TreeNode buildTree(int[] preorder, int[] inorder) {
+	TreeNode root = null;
+    Map<Integer, Integer> indexMap = null;
+    int postorderIndex = -1;
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        indexMap = new HashMap<>();
+        int N = inorder.length;
+        postorderIndex = N-1;
+        for(int i=0; i<N; i++) {
+            indexMap.put(inorder[i], i);
+        }
+        root = helper(0, N-1, postorder);
+        return root;
 
-		postorderIndex = inorder.length - 1;
-		// build a hashmap to store value -> its index relations
-		inorderIndexMap = new HashMap<>();
-		for (int i = 0; i < inorder.length; i++) {
-			inorderIndexMap.put(inorder[i], i);
-		}
-		boolean[] isVisisted = new boolean[preorder.length];
-		return arrayToTreePostOrder(preorder, false, false, null, isVisisted, inorder);
-
-	}
-
-	private static TreeNode arrayToTreePostOrder(int[] postorder, Boolean left, Boolean right, TreeNode treeNode,
-			boolean[] isVisited, int[] inorder) {
-		// if there are no elements to construct the tree
-		if (left == null && !right || right == null && !left) {
-			return null;
-		}
-		int val = postorder[postorderIndex];
-		TreeNode root = new TreeNode(val);
-		int tempI = inorderIndexMap.get(val);
-		isVisited[tempI] = true;
-		Integer tempILeft = null;
-		Integer tempIRight = null;
-		if (tempI - 1 > -1) {
-			tempILeft = inorderIndexMap.get(inorder[tempI - 1]);
-		}
-		if (tempI + 1 < postorder.length) {
-			tempIRight = inorderIndexMap.get(inorder[tempI + 1]);
-		}
-		if (left && treeNode != null) {
-			treeNode.left = root;
-		} else if (right && treeNode != null) {
-			treeNode.right = root;
-		}
-
-		if (tempIRight != null && !isVisited[tempIRight]) {
-			right = true;
-			postorderIndex--;
-		} else if (tempIRight == null || (tempIRight != null && isVisited[tempIRight])) {
-			right = null;
-		}
-		root.right = arrayToTreePostOrder(postorder, false, right, root, isVisited, inorder);
-
-		if (tempILeft != null && !isVisited[tempILeft]) {
-			left = true;
-			postorderIndex--;
-		} else if (tempILeft == null || (tempILeft != null && isVisited[tempILeft])) {
-			left = null;
-		}
-		root.left = arrayToTreePostOrder(postorder, left, false, root, isVisited, inorder);
-		return root;
-
-	}
+    }
+    
+    TreeNode helper(int stInorder, int enInorder, int[] postorder) {
+        TreeNode temp = null;
+        if(stInorder<=enInorder) {
+        	
+            int val = postorder[postorderIndex--];
+           
+            temp = new TreeNode(val);
+            int index = indexMap.get(val);
+            temp.right = helper(index+1, enInorder, postorder);
+            temp.left = helper(stInorder, index-1, postorder);
+        }
+        return temp;
+        
+    }
 }

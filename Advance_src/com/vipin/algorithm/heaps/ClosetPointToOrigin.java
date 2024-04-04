@@ -24,7 +24,8 @@ public class ClosetPointToOrigin {
 	public int[][] solve(int[][] A, int B) {
 		int N = A.length;
 		int[][] finalAns = new int[B][];
-		PriorityQueue<EuclideanDistance> pq = new PriorityQueue<EuclideanDistance>(new Comparator<EuclideanDistance>() {
+		PriorityQueue<EuclideanDistance> pq = new PriorityQueue<EuclideanDistance>(
+				new Comparator<EuclideanDistance>() {
 
 			@Override
 			public int compare(EuclideanDistance o1, EuclideanDistance o2) {

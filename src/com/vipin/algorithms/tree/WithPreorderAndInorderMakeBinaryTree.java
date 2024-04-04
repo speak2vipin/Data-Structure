@@ -16,8 +16,12 @@ public class WithPreorderAndInorderMakeBinaryTree {
 		int[] preorder = { 3, 1, 2, 4 };
 		// int []inorder = {1,2,3,4};
 		WithPreorderAndInorderMakeBinaryTree withPreorderAndInorderMakeBinaryTree = new WithPreorderAndInorderMakeBinaryTree();
-		withPreorderAndInorderMakeBinaryTree.buildTree(postorder, inorder);
-		withPreorderAndInorderMakeBinaryTree.buildTree(preorder, inorder);
+		//withPreorderAndInorderMakeBinaryTree.buildTree(postorder, inorder);
+		//withPreorderAndInorderMakeBinaryTree.buildTree(preorder, inorder);
+		int []inorder1 = {9,3,15,20,7};
+		int [] postorder1 = {9,15,7,20,3};
+		//withPreorderAndInorderMakeBinaryTree.buildTree1(inorder1, postorder1);
+		
 
 	}
 
@@ -40,4 +44,6 @@ public class WithPreorderAndInorderMakeBinaryTree {
 		treeNode.right = buildBinaryTree(preorder, inorderIndexMap.get(val) + 1, right);
 		return treeNode;
 	}
+	
+	
 }

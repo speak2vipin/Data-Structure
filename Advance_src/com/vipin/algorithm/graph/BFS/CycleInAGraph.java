@@ -55,5 +55,15 @@ public class CycleInAGraph {
 		path[node - 1] = false;
 		return false;
 	}
+	
+	int parent[] = new int[10];
+	int root(int i) {
+		if(i==parent[i]) {
+			return i;
+		}
+		int index = root(parent[i]);
+		parent[i] = index;
+		return index;
+	}
 
 }
